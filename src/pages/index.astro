@@ -22,14 +22,31 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-6">Hello World!</h1>
+		<h1 class="title mb-6">Pakhair! I'm Saqib.</h1>
 		<p class="mb-4">
-			Hi, I’m a theme for Astro, a simple starter that you can use to create your website or blog.
-			If you want to know more about how you can customise me, add more posts, and make it your own,
-			click on the GitHub icon link below and it will take you to my repo.
+			I'm an IT student at Conestoga College who loves traffic analysis and incident response. In my
+			spare time, you can find me binge watching Mr. Robot and being yelled at by my entire family
+			when my IPS blocks legitimate IP addresses. I'm always learning more and continuing to grow,
+			and I'd love to contribute to the success of a resilient SOC.
 		</p>
 		<SocialList />
 	</section>
+	{
+		latestNotes.length > 0 && (
+			<section class="mt-16">
+				<h2 class="title text-accent mb-6 text-xl">
+					<a href="/notes/">Projects</a>
+				</h2>
+				<ul class="space-y-4" role="list">
+					{latestNotes.map((note) => (
+						<li>
+							<Note note={note} as="h3" isPreview />
+						</li>
+					))}
+				</ul>
+			</section>
+		)
+	}
 	<section class="mt-16">
 		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
 		<ul class="space-y-4" role="list">
@@ -42,20 +59,4 @@ const latestNotes = allNotes.sort(collectionDateSort).slice(0, MAX_NOTES);
 			}
 		</ul>
 	</section>
-	{
-		latestNotes.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notes</a>
-				</h2>
-				<ul class="space-y-4" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
 </PageLayout>
