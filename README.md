@@ -1,4 +1,4 @@
-# Saqib's Portfolio 
+# 🌐 Saqib's Portfolio 🌐
 
 Welcome to my **portfolio!** My site showcases my journey as an IT Student, projects, and my blog!
 
