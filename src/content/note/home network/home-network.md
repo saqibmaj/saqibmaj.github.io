@@ -6,11 +6,11 @@ publishDate: "2024-10-14T11:23:00Z"
 
 Design a secure, performant, and scalable home network that simulates a small-scale enterprise network using robust open-source technologies. Ensure compliancy with fundamental security frameworks to secure against threat vectors. Continuously optimize the network to ensure high-availability, security, and scale-up to meet growing needs. <br><br><br>
 
-# Network Overview
+### Network Overview
 
 ![topology.png](./topology.png)
 
-### Topology
+##### Topology
 
 The network uses a **star topology** where all devices connect to a central router. This configuration was chosen for its simplicity, scalability, and ease of administration. In this topology:
 
@@ -18,14 +18,14 @@ The network uses a **star topology** where all devices connect to a central rout
 - Two managed switches are employed to expand wired connectivity, ensuring robust and efficient performance.
 - Wireless connectivity is provided by two routers, configured as mesh wireless access points (WAPs) to ensure high-speed coverage and seamless roaming.
 
-### IP Addressing Scheme
+##### IP Addressing Scheme
 
 A hybrid IP addressing scheme is implemented, with:
 
 - **Static IPs** for critical infrastructure like the router, switches, and key network servers.
 - **Dynamic IPs (DHCP)** for less critical devices like personal computers, IoT devices, and other peripherals, offering flexibility and ease of management.
 
-### Infrastructure
+##### Infrastructure
 
 - **pfSense Router**:
     - Acts as the core router, firewall, and VPN gateway.
@@ -40,7 +40,7 @@ A hybrid IP addressing scheme is implemented, with:
 
 # Security Implementations
 
-### **VLAN Segmentation and Firewall Rules**
+##### **VLAN Segmentation and Firewall Rules**
 
 Network segmentation with VLANs (Virtual Local Area Networks) is utilized to isolate traffic based on the roles of devices:
 
@@ -49,7 +49,7 @@ Network segmentation with VLANs (Virtual Local Area Networks) is utilized to iso
 
 ![vlan.png](./vlan.png)
 
-### Snort IDS/IPS
+##### Snort IDS/IPS
 
 **Snort**, an open-source Intrusion Detection and Prevention System (IDS/IPS), is implemented to detect and prevent malicious activities on the network. The configuration includes:
 
@@ -59,19 +59,19 @@ Network segmentation with VLANs (Virtual Local Area Networks) is utilized to iso
 
 ![snort.png](./snort.png)
 
-### Pi-Hole DNS
+##### Pi-Hole DNS
 
 **Pi-Hole** was deployed as a network-wide ad blocker, acting as a DNS sinkhole to block unwanted content such as ads, trackers, and malware at the network level. Configured Pi-Hole blocklists to enhance security while avoiding false positives and increased overhead. Setup **Unbound**, a recursive DNS resolver that works in conjunction Pi-Hole to ensure that DNS queries are resolved locally, bypassing third-party DNS servers, which reduces exposure to potential tracking or data leakage. This setup enhances Pi-Hole’s ad-blocking capabilities, improves performance with faster response times, and strengthens privacy by encrypting DNS queries (via DNS over HTTPS or DNS over TLS)
 
 ![pihole.png](./pihole.png) <br><br><br>
 
-# Security Principles
+### Security Principles
 
-### **Secure by Design**
+##### **Secure by Design**
 
 The network is built with security in mind from the outset. Every component, from pfSense to Pi-Hole, was chosen and configured with security best practices to minimize vulnerabilities. Segmentation of devices ensures that even if one area is compromised, the impact is limited.
 
-### **Defense in Depth**
+##### **Defense in Depth**
 
 Multiple layers of defense are employed to protect against various threats:
 
@@ -79,7 +79,7 @@ Multiple layers of defense are employed to protect against various threats:
 - Snort provides real-time monitoring and prevention of malicious activity.
 - Pi-Hole helps block ad and malware traffic, reducing exposure to external threats.
 
-### **Separation of Duties**
+##### **Separation of Duties**
 
 Different network devices and services are assigned specific roles:
 
@@ -87,6 +87,6 @@ Different network devices and services are assigned specific roles:
 - Managed switches focus on improving network performance, while mesh access points handle wireless traffic.
 - VLAN segmentation ensures that critical systems are isolated from potentially insecure devices. <br><br><br>
 
-# Key Takeaways
+### Key Takeaways
 
 This project successfully designed and implemented a secure, performant, and scalable home network using open-source technologies. By focusing on security frameworks like Snort, Pi-Hole, and network segmentation, the system effectively mitigates potential threats and ensures that all devices are securely isolated based on their role within the network. With future integrations like Active Directory, Splunk, and TheHive, this home network will continue to evolve to meet the growing security needs of the modern digital landscape.
