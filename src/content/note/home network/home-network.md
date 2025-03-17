@@ -36,6 +36,8 @@ A hybrid IP addressing scheme is implemented, with:
 - **Wireless Access Points**:
     - The wireless network is extended by using mesh network configurations that ensure stable, high-speed Wi-Fi coverage across the house. <br><br><br>
 
+![pfsense.png](./pfsense.png)
+
 # Security Implementations
 
 ### **VLAN Segmentation and Firewall Rules**
@@ -45,6 +47,7 @@ Network segmentation with VLANs (Virtual Local Area Networks) is utilized to iso
 - **IoT Devices VLAN**: This segmentation ensures IoT devices with weaker security do not have access to critical infrastructure.
 - **Firewall Rules**: pfSense’s firewall controls the traffic between VLANs, ensuring that only authorized communication occurs between segments.
 
+![vlan.png](./vlan.png)
 
 ### Snort IDS/IPS
 
