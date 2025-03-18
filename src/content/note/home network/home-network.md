@@ -3,90 +3,64 @@ title: Home Network
 description: One homelab to rule them all!
 publishDate: "2024-10-14T11:23:00Z"
 ---
-
+[physical-network.png](./physical-network.png)
 Design a secure, performant, and scalable home network that simulates a small-scale enterprise network using robust open-source technologies. Ensure compliancy with fundamental security frameworks to secure against threat vectors. Continuously optimize the network to ensure high-availability, security, and scale-up to meet growing needs. <br><br><br>
 
-### Network Overview
+# Network Overview
 
+### Topology
 ![topology.png](./topology.png)
-
-##### Topology
-
 The network uses a **star topology** where all devices connect to a central router. This configuration was chosen for its simplicity, scalability, and ease of administration. In this topology:
 
-- The central router is responsible for managing network traffic.
-- Two managed switches are employed to expand wired connectivity, ensuring robust and efficient performance.
-- Wireless connectivity is provided by two routers, configured as mesh wireless access points (WAPs) to ensure high-speed coverage and seamless roaming.
+**pfSense Router**
+    - Acts as the core router, firewall, and VPN gateway.
+**Managed Switches**
+    - Two interlinked switches extend the wired connectivity of the network, thereby increasing performance, and security. 
+**Wireless Access Points**
+    - The wireless network is extended by using routers that are configured as wireless APs, in a mesh network configuration that ensures high-speed coverage across the house.
 
-##### IP Addressing Scheme
-
+### IP Addressing Scheme
 A hybrid IP addressing scheme is implemented, with:
 
 - **Static IPs** for critical infrastructure like the router, switches, and key network servers.
 - **Dynamic IPs (DHCP)** for less critical devices like personal computers, IoT devices, and other peripherals, offering flexibility and ease of management.
 
-##### Infrastructure
+# Network Infrastructure
 
-- **pfSense Router**:
-    - Acts as the core router, firewall, and VPN gateway.
-    - pfSense is open-source and allows for robust network security features, including traffic filtering, logging, and more.
-- **Managed Switches**:
-    - Two interlinked switches improve network performance, reliability, and security.
-    - Enable **VLANs** for network segmentation, ensuring isolation of traffic based on device types or functions (e.g., separating IoT devices from critical systems).
-- **Wireless Access Points**:
-    - The wireless network is extended by using mesh network configurations that ensure stable, high-speed Wi-Fi coverage across the house. <br><br><br>
-
+### pfSense
 ![pfsense.png](./pfsense.png)
 
-# Security Implementations
+Incorporated pfSense because it offers a high level of control and security. As an open-source firewall and router solution, it provides advanced features like VPN support, traffic management, and comprehensive network monitoring. Being free and highly customizable, pfSense allows me to optimize my network's performance and security in ways that the default router software couldn’t. It’s been an invaluable tool for enhancing both the protection and efficiency of my network.
 
-##### **VLAN Segmentation and Firewall Rules**
-
-Network segmentation with VLANs (Virtual Local Area Networks) is utilized to isolate traffic based on the roles of devices:
-
-- **IoT Devices VLAN**: This segmentation ensures IoT devices with weaker security do not have access to critical infrastructure.
-- **Firewall Rules**: pfSense’s firewall controls the traffic between VLANs, ensuring that only authorized communication occurs between segments.
-
+### IoT VLAN
 ![vlan.png](./vlan.png)
 
-##### Snort IDS/IPS
+Placed Internet of Things (IoT) devices in a segmented Virtual Local Area Network (VLAN) enhances security by isolating them from the main network, reducing the attack surface. This containment limits the potential impact of a compromised IoT device, preventing lateral movement to critical systems. It also allows for more granular control over traffic, enabling stricter access controls and monitoring for suspicious activity. 
 
-**Snort**, an open-source Intrusion Detection and Prevention System (IDS/IPS), is implemented to detect and prevent malicious activities on the network. The configuration includes:
+# Challenges
 
-- **Real-time detection** of common threats, such as port scans, buffer overflow attempts, and suspicious login patterns.
-- Customizable rule sets tailored to common home network ports (HTTP, HTTPS, DNS) for efficient monitoring.
-- Disabling of rules that are specific to larger-scale enterprise environments (e.g., server infrastructure) to optimize performance.
+### ISP Modem
+During setup, the ISP modem could not be configured in bridge mode, causing a double NAT issue with the pfSense router. This prevented public facing services such as the CCTV cameras from functioning properly, or being accessed through their mobile app. 
 
-![snort.png](./snort.png)
+To resolve this, an advanced DMZ configuration was set up on the pfSense router through the modem's web-based interface. This allowed the pfSense router to bypass the double NAT issue by making the router a public facing device, and therefore issuing the WAN interface with my network's public IP address. This ensured that the pfSense router managed all routing and traffic without interference from the ISP modem’s NAT, restoring functionality to the CCTV cameras.
 
-##### Pi-Hole DNS
+### Interlinked Switches
 
-**Pi-Hole** was deployed as a network-wide ad blocker, acting as a DNS sinkhole to block unwanted content such as ads, trackers, and malware at the network level. Configured Pi-Hole blocklists to enhance security while avoiding false positives and increased overhead. Setup **Unbound**, a recursive DNS resolver that works in conjunction Pi-Hole to ensure that DNS queries are resolved locally, bypassing third-party DNS servers, which reduces exposure to potential tracking or data leakage. This setup enhances Pi-Hole’s ad-blocking capabilities, improves performance with faster response times, and strengthens privacy by encrypting DNS queries (via DNS over HTTPS or DNS over TLS)
+Configuring the interlinked managed switches posed a challenge, mainly with preventing network loops. Without proper configuration, the switches could create loops, leading to network instability. The key solution was enabling Spanning Tree Protocol (STP) to prevent redundant paths from forming.
 
-![pihole.png](./pihole.png) <br><br><br>
+Additionally, the switch port connecting to the secondary switch was configured as a trunk port, allowing multiple VLANs to pass between the switches without issues. Once STP was properly configured and the trunk port set up, redundant links were blocked, eliminating loops and ensuring stable, efficient communication across the network.
 
-### Security Principles
+# Security Principles
 
-##### **Secure by Design**
+### Secure by Design
+Security is integrated from the start by using pfSense as the core router and firewall, providing built-in traffic filtering, logging, and VPN services. The network's segmentation into VLANs (like isolating IoT devices) ensures that security considerations are baked into the design from the ground up, reducing vulnerabilities.
 
-The network is built with security in mind from the outset. Every component, from pfSense to Pi-Hole, was chosen and configured with security best practices to minimize vulnerabilities. Segmentation of devices ensures that even if one area is compromised, the impact is limited.
+### Separation of Duties
+The network is structured with different roles assigned to specific devices, such as the pfSense router/firewall handling traffic filtering and VPN services, while managed switches ensure network performance and segmentation. Each network component is responsible for a specific function, minimizing the risk of a single point of failure or compromise.
 
-##### **Defense in Depth**
+### Defense in Depth
+Multiple layers of security are employed throughout the network. pfSense provides firewall protection and VPN capabilities, mesh Wi-Fi access points offer seamless but secure wireless connectivity, and the use of VLANs for IoT devices adds an additional layer of isolation. These layered defenses ensure that even if one part of the network is compromised, other protections remain intact.
 
-Multiple layers of defense are employed to protect against various threats:
+# Conclusion
 
-- pfSense acts as a firewall, blocking unauthorized inbound and outbound traffic.
-- Snort provides real-time monitoring and prevention of malicious activity.
-- Pi-Hole helps block ad and malware traffic, reducing exposure to external threats.
-
-##### **Separation of Duties**
-
-Different network devices and services are assigned specific roles:
-
-- pfSense handles routing, firewalling, and VPN connections.
-- Managed switches focus on improving network performance, while mesh access points handle wireless traffic.
-- VLAN segmentation ensures that critical systems are isolated from potentially insecure devices. <br><br><br>
-
-### Key Takeaways
-
-This project successfully designed and implemented a secure, performant, and scalable home network using open-source technologies. By focusing on security frameworks like Snort, Pi-Hole, and network segmentation, the system effectively mitigates potential threats and ensures that all devices are securely isolated based on their role within the network. With future integrations like Active Directory, Splunk, and TheHive, this home network will continue to evolve to meet the growing security needs of the modern digital landscape.
+The home network design successfully created a secure, scalable, and high-performance environment using a star topology, with pfSense as the core router and firewall. Key security measures, including network segmentation with VLANs and a defense-in-depth strategy, ensure robust protection against threats. Challenges like ISP modem configuration and switch management were addressed with solutions such as advanced DMZ setup and STP, ensuring network stability and performance. Overall, the project demonstrates the effectiveness of integrating security from the start while leveraging open-source technologies for a future-proof network.
