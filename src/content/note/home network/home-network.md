@@ -6,7 +6,7 @@ publishDate: "2024-10-14T11:23:00Z"
 
 ![physical-network.png](./physical-network.png)
 
-Design a secure, performant, and scalable home network that simulates a small-scale enterprise network using robust open-source technologies. Ensure compliancy with fundamental security frameworks to secure against threat vectors. Continuously optimize the network to ensure high-availability, security, and scale-up to meet growing needs.
+Design a secure, performant, and scalable home network that simulates a small-scale enterprise network using robust open-source technologies. Ensure compliancy with fundamental security frameworks to secure against threat vectors. Continuously optimize the network to ensure high-availability, security, and scale-up to meet growing needs. <br><br><br><br><br>
 
 # Network Overview
 
@@ -25,7 +25,7 @@ The network uses a **star topology** where all devices connect to a central rout
 A hybrid IP addressing scheme is implemented, with:
 
 - **Static IPs** for critical infrastructure like the router, switches, and key network servers.
-- **Dynamic IPs (DHCP)** for less critical devices like personal computers, IoT devices, and other peripherals, offering flexibility and ease of management.
+- **Dynamic IPs (DHCP)** for less critical devices like personal computers, IoT devices, and other peripherals, offering flexibility and ease of management. <br><br><br>
 
 # Network Infrastructure
 
@@ -37,7 +37,7 @@ Incorporated pfSense because it offers a high level of control and security. As 
 ### IoT VLAN
 ![vlan.png](./vlan.png)
 
-Placed Internet of Things (IoT) devices in a segmented Virtual Local Area Network (VLAN) enhances security by isolating them from the main network, reducing the attack surface. This containment limits the potential impact of a compromised IoT device, preventing lateral movement to critical systems. It also allows for more granular control over traffic, enabling stricter access controls and monitoring for suspicious activity. 
+Placed Internet of Things (IoT) devices in a segmented Virtual Local Area Network (VLAN) enhances security by isolating them from the main network, reducing the attack surface. This containment limits the potential impact of a compromised IoT device, preventing lateral movement to critical systems. It also allows for more granular control over traffic, enabling stricter access controls and monitoring for suspicious activity. <br><br><br>
 
 # Challenges
 
@@ -50,7 +50,7 @@ To resolve this, an advanced DMZ configuration was set up on the pfSense router 
 
 Configuring the interlinked managed switches posed a challenge, mainly with preventing network loops. Without proper configuration, the switches could create loops, leading to network instability. The key solution was enabling Spanning Tree Protocol (STP) to prevent redundant paths from forming.
 
-Additionally, the switch port connecting to the secondary switch was configured as a trunk port, allowing multiple VLANs to pass between the switches without issues. Once STP was properly configured and the trunk port set up, redundant links were blocked, eliminating loops and ensuring stable, efficient communication across the network.
+Additionally, the switch port connecting to the secondary switch was configured as a trunk port, allowing multiple VLANs to pass between the switches without issues. Once STP was properly configured and the trunk port set up, redundant links were blocked, eliminating loops and ensuring stable, efficient communication across the network. <br><br><br>
 
 # Security Principles
 
@@ -61,7 +61,7 @@ Security is integrated from the start by using pfSense as the core router and fi
 The network is structured with different roles assigned to specific devices, such as the pfSense router/firewall handling traffic filtering and VPN services, while managed switches ensure network performance and segmentation. Each network component is responsible for a specific function, minimizing the risk of a single point of failure or compromise.
 
 ### Defense in Depth
-Multiple layers of security are employed throughout the network. pfSense provides firewall protection and VPN capabilities, mesh Wi-Fi access points offer seamless but secure wireless connectivity, and the use of VLANs for IoT devices adds an additional layer of isolation. These layered defenses ensure that even if one part of the network is compromised, other protections remain intact.
+Multiple layers of security are employed throughout the network. pfSense provides firewall protection and VPN capabilities, mesh Wi-Fi access points offer seamless but secure wireless connectivity, and the use of VLANs for IoT devices adds an additional layer of isolation. These layered defenses ensure that even if one part of the network is compromised, other protections remain intact. <br><br><br>
 
 # Conclusion
 
