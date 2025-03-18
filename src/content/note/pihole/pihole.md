@@ -1,6 +1,6 @@
 ---
-title: Home Network
-description: one homelab to rule them all!
+title: Snort IDS/IPS
+description: oink
 publishDate: "2024-10-14T11:23:00Z"
 ---
 
