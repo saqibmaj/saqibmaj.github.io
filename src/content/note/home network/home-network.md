@@ -6,7 +6,7 @@ publishDate: "2024-10-14T11:23:00Z"
 
 ![physical-network.png](./physical-network.png)
 
-Design a secure, performant, and scalable home network that simulates a small-scale enterprise network using robust open-source technologies. Ensure compliancy with fundamental security frameworks to secure against threat vectors. Continuously optimize the network to ensure high-availability, security, and scale-up to meet growing needs. <br><br><br>
+Design a secure, performant, and scalable home network that simulates a small-scale enterprise network using robust open-source technologies. Ensure compliancy with fundamental security frameworks to secure against threat vectors. Continuously optimize the network to ensure high-availability, security, and scale-up to meet growing needs.
 
 # Network Overview
 
