@@ -1,7 +1,7 @@
 ---
 title: Snort IDS/IPS
 description: oink
-publishDate: "2024-10-14T11:23:00Z"
+publishDate: "2025-03-17T11:30:00Z"
 ---
 
 ![snort.png](./snort.png)

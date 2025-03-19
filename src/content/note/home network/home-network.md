@@ -1,7 +1,7 @@
 ---
 title: Home Network
 description: one homelab to rule them all!
-publishDate: "2024-10-14T11:23:00Z"
+publishDate: "2025-03-12T12:30:00Z"
 ---
 
 ![physical-network.png](./physical-network.png)
