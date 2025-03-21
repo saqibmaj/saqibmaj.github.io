@@ -14,12 +14,9 @@ Design a secure, performant, and scalable home network that simulates a small-sc
 ![topology.png](./topology.png)
 The network uses a **star topology** where all devices connect to a central router. This configuration was chosen for its simplicity, scalability, and ease of administration. In this topology:
 
-**pfSense Router**
-    - Acts as the core router, firewall, and VPN gateway.
-**Managed Switches**
-    - Two interlinked switches extend the wired connectivity of the network, thereby increasing performance, and security. 
-**Wireless Access Points**
-    - The wireless network is extended by using routers that are configured as wireless APs, in a mesh network configuration that ensures high-speed coverage across the house.
+- **pfSense Router:** Acts as the core router, firewall, and VPN gateway.
+- **Managed Switches:** Two interlinked switches extend the wired connectivity of the network, thereby increasing performance, and security. 
+- **Wireless Access Points:** The wireless network is extended by using routers that are configured as wireless APs, in a mesh network configuration that ensures high-speed coverage across the house.
 
 ### IP Addressing Scheme
 A hybrid IP addressing scheme is implemented, with:
