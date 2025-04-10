@@ -46,12 +46,12 @@ To streamline client workstation deployment in my Active Directory environment, 
 To complement the debloating process, I used Group Policy to deploy a standardized software suite across all workstations, including Firefox, LibreOffice, VLC Media Player, VSCode, Discord, 7-Zip, and Python. Centralizing software installation through GPO helped ensure consistent configurations, saved time during setup, and simplified future maintenance and updates across the domain.
 
 # Challenges
-**Group Policy Software Deployment Reliability**
+**Group Policy Software Deployment Reliability** <br>
 One challenge I encountered was ensuring consistent software deployment via Group Policy across all domain-joined machines. Some systems intermittently failed to install applications like LibreOffice or VSCode due to delayed Group Policy refresh cycles or user permissions blocking MSI execution during startup. This inconsistency created gaps in the workstation environment and added overhead to manually verify each installation.
 
 To overcome this, I configured the GPO to install software at startup (rather than login), ensured the MSI packages were hosted on a reliable, accessible network share with the correct NTFS and share permissions, and used gpresult and event logs to troubleshoot failures. I also enabled verbose logging for the Group Policy client to identify machines that required additional attention, which ultimately led to a smoother, more predictable deployment process.
 
-**Remote Debloating Script Execution Permissions**
+**Remote Debloating Script Execution Permissions** <br>
 Another hurdle involved remotely executing the debloating PowerShell script on domain-joined workstations, particularly when dealing with default Windows firewall settings and constrained PowerShell remoting policies. Initial attempts were blocked due to disabled WinRM services or insufficient admin rights on the target machines.
 
 To address this, I created a startup script that enabled and configured WinRM via GPO, allowing secure remote sessions. I also scoped permissions carefully, ensuring only authorized admin accounts could execute debloat operations. By automating script execution through Organizational Units and leveraging the -WhatIf flag during testing, I safely rolled out changes and verified behavior before applying them across the domain.
