@@ -43,6 +43,8 @@ To further secure directory communications, I required **LDAP signing** on domai
 
 To streamline client workstation deployment in my Active Directory environment, I used a custom PowerShell script to automate the debloating process across all domain-joined machines. The script targeted either specific machines or entire Organizational Units (OUs), remotely removing unnecessary preinstalled apps, disabling telemetry, Cortana, Xbox features, OneDrive, and other consumer-oriented services. This not only improved system performance but also reduced unnecessary network traffic and enhanced overall security by minimizing the attack surface. 
 
+You can find the script [here!](https://github.com/saqibmaj/AD-winDebloat)
+
 To complement the debloating process, I used Group Policy to deploy a standardized software suite across all workstations, including Firefox, LibreOffice, VLC Media Player, VSCode, Discord, 7-Zip, and Python. Centralizing software installation through GPO helped ensure consistent configurations, saved time during setup, and simplified future maintenance and updates across the domain.
 
 # Challenges
