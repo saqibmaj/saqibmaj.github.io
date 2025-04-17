@@ -1,5 +1,5 @@
 ---
-title: Home Network
+title: pfSense Network + VLANs
 description: one homelab to rule them all!
 publishDate: "2025-03-12T12:30:00Z"
 ---

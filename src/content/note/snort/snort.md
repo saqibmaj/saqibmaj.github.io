@@ -1,5 +1,5 @@
 ---
-title: Snort IDS/IPS
+title: Snort IDS/IPS Implementation
 description: oink
 publishDate: "2025-03-17T11:30:00Z"
 ---

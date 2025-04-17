@@ -1,5 +1,5 @@
 ---
-title: Active Directory Home Lab
+title: Active Directory w/ PowerShell Automation
 description: Check out my awesome AD Homelab!  
 publishDate: "2025-04-10T12:00:00Z"
 ---

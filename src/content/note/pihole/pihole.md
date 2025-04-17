@@ -1,5 +1,5 @@
 ---
-title: Pi-Hole DNS
+title: Recursive Pi-Hole DNS Server
 description: this guy dns's. 
 publishDate: "2025-03-15T09:00:00Z"
 ---
